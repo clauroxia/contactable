@@ -11,10 +11,12 @@ async function init() {
     if (!token) throw new Error();
     const user = await getUser();
     STORE.user = user;
-    // await STORE.fetchContacts();
+    await STORE.fetchContacts();
     DOMHandler.load(HomePage);
   } catch (error) {
     sessionStorage.removeItem(tokenKey);
     DOMHandler.load(LoginPage);
   }
 }
+
+init();

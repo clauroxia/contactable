@@ -6,3 +6,11 @@ async function fetchContacts() {
 }
 
 fetchContacts();
+
+const STORE = {
+    user: null,
+    fetchContacts,
+  };
+  
+  export default STORE;
+  

@@ -1,17 +1,17 @@
 import { input } from "../components/inputs.js";
 import DOMHandler from "../dom-handler.js";
-import { login } from "../services/sessions-service.js";
+import LoginPage from "./login-page.js";
 import STORE from "../store.js";
 import HomePage from "./home-page.js";
-import SignupPage from "./signup-page.js";
+import { createUser } from "../services/users-service.js";
 
 function render() {
-  const { loginError } = LoginPage.state;
+  const { signupError } = SignupPage.state;
   return `
 <main class="section">
   <section class="container">
-    <h1 class="heading heading--lg text-center mb-4">Login</h1>
-    <form class="flex flex-column gap-4 mb-4 js-login-form">
+    <h1 class="heading heading--lg text-center mb-4">Sign up</h1>
+    <form class="flex flex-column gap-4 mb-4 js-signup-form">
       ${input({
         label: "email",
         id: "email",
@@ -28,17 +28,17 @@ function render() {
         required: true,
         value: "123456",
       })}
-      ${loginError ? `<p class="text-center error-300">${loginError}</p>` : ""}
-      <button class="button button--primary">Login</button>
+      ${signupError ? `<p class="text-center error-300">${signupError}</p>` : ""}
+      <button class="button button--primary">Sign up</button>
     </form>
-    <a href="#" class="block text-center js-signup">Signup</a>
+    <a href="#" class="block text-center js-login">Login</a>
   </section>
 </main>
   `;
 }
 
 function listenSubmitForm() {
-  const form = document.querySelector(".js-login-form");
+  const form = document.querySelector(".js-signup-form");
 
   form.addEventListener("submit", async (event) => {
     try {
@@ -50,40 +50,41 @@ function listenSubmitForm() {
         password: password.value,
       };
 
-      const user = await login(credentials);
+      const user = await createUser(credentials);
       STORE.user = user;
       await STORE.fetchContacts();
       DOMHandler.load(HomePage);
     } catch (error) {
-      LoginPage.state.loginError = error.message;
+      SignupPage.state.signupError = error.message;
       DOMHandler.reload();
     }
   });
 }
 
-function listenSignup(){
-    const a = document.querySelector(".js-signup");
+function listenLogin(){
+    const a = document.querySelector(".js-login");
     a.addEventListener("click", (event) => {
         event.preventDefault();
         try {
-            DOMHandler.load(SignupPage);
+            DOMHandler.load(LoginPage);
         } catch (error) {
             console.log(error);
         }
     });
 }
 
-const LoginPage = {
+
+const SignupPage = {
   toString() {
     return render();
   },
   addListeners() {
     listenSubmitForm();
-    listenSignup();
+    listenLogin()
   },
   state: {
-    loginError: null,
+    signupError: null,
   },
 };
 
-export default LoginPage;
+export default SignupPage;
