@@ -1,0 +1,22 @@
+.contact-container {
+  width: 355px;
+  height: 56px;
+  padding: 12px 16px 12px 20px;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.contact-container:hover{
+  background-color: #F5F5F5;
+}
+
+.contact-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
