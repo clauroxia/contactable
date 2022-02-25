@@ -1,18 +1,15 @@
-const BASE_URI =  "https://contactable-api.herokuapp.com/"
-const tokenKey = "conctactable_token"
+import { tokenKey } from "../config.js";
+import apiFetch from "./api-fetch.js";
 
 export async function login(credentials = { email, password }) {
-    const response = await fetch(BASE_URI+"login", {
-        method: "POST",
-        headers:{
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
-    });
-
-    const user = await response.json(); 
-    sessionStorage.setItem(tokenKey, user.token);
+    const { token, ...user } = await apiFetch("login", { body: credentials });
+    sessionStorage.setItem(tokenKey, token);
     return user;
-
+  }
+  
+export async function logout() {
+    await apiFetch("logout", { method: "DELETE" });
+    sessionStorage.removeItem(tokenKey);
 }
+  
 

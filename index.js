@@ -5,4 +5,6 @@ const credentials = {
     password: "123456"
 }
 
-login(credentials).then(console.log).catch((error) => console.log(error));
+login(credentials)
+    .then(console.log(user, "success"))
+    .catch((error) => console.log(error, ));
