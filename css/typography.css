@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.content,
+.heading {
+  font-family: 'Roboto', sans-serif;
+}
+
+.title--lg {
+  font-size: 1.875rem;
+  line-height: 2.375rem;
+}
+
+.title--md {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.title--sm {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.content--md {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.content--sm {
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
