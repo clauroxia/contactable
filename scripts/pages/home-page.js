@@ -1,20 +1,15 @@
-import DOMHandler from "../dom-handler.js";
-import { logout } from "../services/sessions-service.js";
-import STORE from "../store.js";
-import LoginPage from "./login-page.js";
-
-function render() {
-  const currentTab = STORE.currentTab;
-  return `
-    <p> Home Page</p>
-  `;
-}
-
 const HomePage = {
   toString() {
-    return render();
-  },
-  addListeners() {},
+    return `
+    <div class="contact-container">
+      <div class="contact-details">
+        <img src="images/Rectangle.svg" alt="">
+        <p class="content content--sm">Luis Chota</p>
+      </div>
+      <img src="images/Vector.svg" alt="">
+    </div> 
+    `
+  }
 };
 
 export default HomePage;
