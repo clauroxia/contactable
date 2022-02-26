@@ -1,6 +1,5 @@
 import { input } from "../components/inputs.js";
 import DOMHandler from "../dom-handler.js";
-import { getContacts } from "../services/contacts-service.js";
 import { login } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import HomePage from "./home-page.js";
@@ -19,7 +18,7 @@ function render() {
         placeholder: "john@example.com",
         type: "email",
         required: true,
-        value: "team01-luis@mail.com",
+        value: "test1@mail.com",
       })}
       ${input({
         label: "password",
@@ -53,8 +52,7 @@ function listenSubmitForm() {
 
       const user = await login(credentials);
       STORE.user = user;
-      const contacts = await getContacts();
-      STORE.contacts = contacts;
+      await STORE.fetchContacts();
       DOMHandler.load(HomePage);
     } catch (error) {
       LoginPage.state.loginError = error.message;
