@@ -4,7 +4,7 @@
   text-align: end;
   background-color: var(--gray-100);
   padding: 14px;
-  color: #2962ff;
+  color: var(--blue);
 }
 
 .button-enter {
@@ -13,10 +13,16 @@
   box-shadow: none;
   background-color: white;
   cursor: pointer;
-  color: #2962ff;
+  color: var(--blue);
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
 }
 
 .link {
   text-decoration: none;
-  color: #2962ff;
+  color: var(--blue);
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
 }

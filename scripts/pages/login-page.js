@@ -4,11 +4,12 @@ import { login } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import HomePage from "./home-page.js";
 import SignupPage from "./signup-page.js";
+import { getContacts } from "../services/contacts-service.js";
 
 function render() {
   const { loginError } = LoginPage.state;
   return `
-<main class="section">
+<main>
   <section class="container">
     <h1 class="heading title--sm form__title">Login</h1>
     <form class="js-login-form">
@@ -52,7 +53,8 @@ function listenSubmitForm() {
 
       const user = await login(credentials);
       STORE.user = user;
-      await STORE.fetchContacts();
+      const contacts = await getContacts();
+      STORE.contacts = contacts;
       DOMHandler.load(HomePage);
     } catch (error) {
       LoginPage.state.loginError = error.message;
@@ -61,16 +63,16 @@ function listenSubmitForm() {
   });
 }
 
-function listenSignup(){
-    const a = document.querySelector(".js-signup");
-    a.addEventListener("click", (event) => {
-        event.preventDefault();
-        try {
-            DOMHandler.load(SignupPage);
-        } catch (error) {
-            console.log(error);
-        }
-    });
+function listenSignup() {
+  const a = document.querySelector(".js-signup");
+  a.addEventListener("click", (event) => {
+    event.preventDefault();
+    try {
+      DOMHandler.load(SignupPage);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 }
 
 const LoginPage = {
