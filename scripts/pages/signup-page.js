@@ -25,7 +25,7 @@ function render() {
         type: "password",
         required: true,
       })}
-      ${signupError ? `<p class="text-center error-300">${signupError}</p>` : ""}
+      ${signupError ? `<p class="text-center error">${signupError}</p>` : ""}
       </div> 
       <div class="footer">
       <a href="#" class="link js-login">Login</a>

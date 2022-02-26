@@ -11,3 +11,11 @@
 .gray-light {
   color: var(--gray-light);
 }
+
+.text-center {
+  text-align: center;
+}
+
+.error {
+  color: var(--error);
+}
