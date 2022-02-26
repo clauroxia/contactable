@@ -20,3 +20,21 @@
   gap: 2rem;
 }
 
+.container-detail {
+  width: 355px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.line {
+  width: 355px;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.image-size {
+  width: 72px;
+  height: 72px;
+}

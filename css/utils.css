@@ -11,3 +11,7 @@
 .gray-light {
   color: var(--gray-light);
 }
+
+.blue {
+  color: var(--blue);
+}
