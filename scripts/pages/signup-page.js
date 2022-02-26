@@ -10,28 +10,28 @@ function render() {
   return `
 <main class="section">
   <section class="container">
-    <h1 class="heading heading--lg text-center mb-4">Sign up</h1>
-    <form class="flex flex-column gap-4 mb-4 js-signup-form">
+    <h1 class="heading title--sm form__title">Sign up</h1>
+    <form class="js-signup-form">
+    <div class="container__form">
       ${input({
-        label: "email",
         id: "email",
-        placeholder: "john@example.com",
+        placeholder: "email",
         type: "email",
         required: true,
-        value: "test1@mail.com",
       })}
       ${input({
-        label: "password",
         id: "password",
-        placeholder: "******",
+        placeholder: "password",
         type: "password",
         required: true,
-        value: "123456",
       })}
       ${signupError ? `<p class="text-center error-300">${signupError}</p>` : ""}
-      <button class="button button--primary">Sign up</button>
+      </div> 
+      <div class="footer">
+      <a href="#" class="link js-login">Login</a>
+      <button class="button-enter">Sign up</button>
+      </div>
     </form>
-    <a href="#" class="block text-center js-login">Login</a>
   </section>
 </main>
   `;

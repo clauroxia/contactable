@@ -12,7 +12,9 @@ function render(){
     </div>
     <img src="images/Vector.svg" alt="">
   </div> 
-  <a href="#" class = "text-center js-logout"> Logout </a>
+  <div class = "footer">
+  <a href="#" class = "link js-logout"> Logout </a>
+  </div>
   `
 }
 

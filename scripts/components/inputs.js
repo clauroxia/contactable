@@ -18,7 +18,7 @@ export function input({
         <input
           type="${type ? type : "text"}"
           placeholder="${placeholder}"
-          class="input__content"
+          class="input__form"
           id="${id}"
           name="${name ? name : id}"
           ${value ? `value="${value}"` : ""}

@@ -1,0 +1,49 @@
+@import url(colors.css);
+@import url(typography.css);
+
+input {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+::placeholder {
+  color: var(--gray-light);
+}
+
+input.error {
+  border-color: var(--error);
+}
+
+.error-message {
+  color: var(--error);
+}
+
+.container__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input__form {
+  width: 235px;
+  margin: 20px 60px 17px;
+  border: 0;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.input__form:focus {
+  outline: none;
+  border-bottom: 1px solid var(--black);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__title {
+  padding: 14px 0 14px 20px;
+  border-bottom: 1px solid var(--gray-light);
+}
