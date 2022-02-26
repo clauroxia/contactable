@@ -4,11 +4,12 @@ import LoginPage from "./login-page.js";
 import STORE from "../store.js";
 import HomePage from "./home-page.js";
 import { createUser } from "../services/users-service.js";
+import { getContacts } from "../services/contacts-service.js";
 
 function render() {
   const { signupError } = SignupPage.state;
   return `
-<main class="section">
+<main>
   <section class="container">
     <h1 class="heading title--sm form__title">Sign up</h1>
     <form class="js-signup-form">
@@ -25,11 +26,11 @@ function render() {
         type: "password",
         required: true,
       })}
-      ${signupError ? `<p class="text-center error-300">${signupError}</p>` : ""}
+      ${signupError ? `<p class="text-center error">${signupError}</p>` : ""}
       </div> 
       <div class="footer">
       <a href="#" class="link js-login">Login</a>
-      <button class="button-enter">Sign up</button>
+      <button class="button-enter">Signup</button>
       </div>
     </form>
   </section>
@@ -52,7 +53,8 @@ function listenSubmitForm() {
 
       const user = await createUser(credentials);
       STORE.user = user;
-      await STORE.fetchContacts();
+      const contacts = await getContacts();
+      STORE.contacts = contacts;
       DOMHandler.load(HomePage);
     } catch (error) {
       SignupPage.state.signupError = error.message;
@@ -61,18 +63,17 @@ function listenSubmitForm() {
   });
 }
 
-function listenLogin(){
-    const a = document.querySelector(".js-login");
-    a.addEventListener("click", (event) => {
-        event.preventDefault();
-        try {
-            DOMHandler.load(LoginPage);
-        } catch (error) {
-            console.log(error);
-        }
-    });
+function listenLogin() {
+  const a = document.querySelector(".js-login");
+  a.addEventListener("click", (event) => {
+    event.preventDefault();
+    try {
+      DOMHandler.load(LoginPage);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 }
-
 
 const SignupPage = {
   toString() {
@@ -80,7 +81,7 @@ const SignupPage = {
   },
   addListeners() {
     listenSubmitForm();
-    listenLogin()
+    listenLogin();
   },
   state: {
     signupError: null,

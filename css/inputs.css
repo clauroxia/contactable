@@ -42,8 +42,3 @@ input.error {
   display: flex;
   flex-direction: column;
 }
-
-.form__title {
-  padding: 14px 0 14px 20px;
-  border-bottom: 1px solid var(--gray-light);
-}

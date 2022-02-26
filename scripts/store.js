@@ -1,6 +1,7 @@
 const STORE = {
-  user: null,
-  contacts: [],
-};
-
-export default STORE;
+    user: null,
+    contacts: [],
+  };
+  
+  export default STORE;
+  

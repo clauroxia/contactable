@@ -3,12 +3,21 @@ import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import LoginPage from "./login-page.js";
 
+function renderHeader(title) {
+  return `
+  <div class="header">
+  <h1 class="heading title--sm header__title">${title}</h1>
+  <a href="#" class = "link js-logout"> Logout </a>
+  </div>
+  ${renderUL()}
+  `;
+}
+
 function renderUL() {
   return `
-  <ul class="js-contact-list">
-    ${renderContacts()}
-  </ul>
-  `
+  <ul class = "contact__list js-contact-list"> 
+    ${renderContacts(STORE.contacts)}
+  </ul>`;
 }
 
 function render(contact) {
@@ -22,12 +31,16 @@ function render(contact) {
       </div>
       <img src="images/Vector.svg" alt="">
     </div>
-    <img src="images/Vector.svg" alt="">
-  </div> 
-  <div class = "footer">
-  <a href="#" class = "link js-logout"> Logout </a>
-  </div>
-  `
+  </li>
+  `;
+}
+
+function renderContacts(contacts) {
+  let contactsTemplate = "";
+  for (let contact of contacts) {
+    contactsTemplate += render(contact);
+  }
+  return contactsTemplate;
 }
 
 function listenLogout() {
@@ -45,7 +58,7 @@ function listenLogout() {
 
 const HomePage = {
   toString() {
-    return renderContacts(STORE.contacts);
+    return renderHeader("Contactable");
   },
   addListeners() {
     listenLogout();

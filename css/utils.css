@@ -15,3 +15,11 @@
 .blue {
   color: var(--blue);
 }
+
+.text-center {
+  text-align: center;
+}
+
+.error {
+  color: var(--error);
+}

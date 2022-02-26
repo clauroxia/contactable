@@ -5,6 +5,7 @@ import LoginPage from "./scripts/pages/login-page.js";
 import { getContacts } from "./scripts/services/contacts-service.js";
 import { getUser } from "./scripts/services/users-service.js";
 import STORE from "./scripts/store.js";
+import { getContacts } from "./scripts/services/contacts-service.js";
 
 async function init() {
   try {
