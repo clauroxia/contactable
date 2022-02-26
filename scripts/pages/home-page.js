@@ -1,19 +1,38 @@
 import DOMHandler from "../dom-handler.js";
 import { logout } from "../services/sessions-service.js";
+import STORE from "../store.js";
 import LoginPage from "./login-page.js";
 
-function render(){
+function renderUL() {
+  return `
+  <ul class="js-contact-list">
+    ${renderContacts()}
+  </ul>
+  `
+}
+
+function render(contact) {
   // const currentTab = STORE.currentTab;
   return `
-  <div class="contact-container">
-    <div class="contact-details">
-      <img src="images/Rectangle.svg" alt="">
-      <p class="content content--sm">Luis Chota</p>
+  <li>
+    <div class="contact-container">
+      <div class="contact-details">
+        <img src="images/Rectangle.svg" alt="">
+        <p class="content content--sm">${contact.name}</p>
+      </div>
+      <img src="images/Vector.svg" alt="">
     </div>
-    <img src="images/Vector.svg" alt="">
-  </div> 
-  <a href="#" class = "text-center js-logout"> Logout </a>
-  `
+  </li>
+  `;
+}
+
+function renderContacts(contacts) {
+  let contactsTemplate = ``;
+  for (let contact of contacts) {
+    contactsTemplate += render(contact);
+  }
+  contactsTemplate += `<a href="#" class = "text-center js-logout"> Logout </a>`;
+  return contactsTemplate;
 }
 
 function listenLogout() {
@@ -31,9 +50,9 @@ function listenLogout() {
 
 const HomePage = {
   toString() {
-    return render();
+    return renderContacts(STORE.contacts);
   },
-  addListeners(){
+  addListeners() {
     listenLogout();
   },
 };
