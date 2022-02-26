@@ -22,17 +22,12 @@ function render(contact) {
       </div>
       <img src="images/Vector.svg" alt="">
     </div>
-  </li>
-  `;
-}
-
-function renderContacts(contacts) {
-  let contactsTemplate = ``;
-  for (let contact of contacts) {
-    contactsTemplate += render(contact);
-  }
-  contactsTemplate += `<a href="#" class = "text-center js-logout"> Logout </a>`;
-  return contactsTemplate;
+    <img src="images/Vector.svg" alt="">
+  </div> 
+  <div class = "footer">
+  <a href="#" class = "link js-logout"> Logout </a>
+  </div>
+  `
 }
 
 function listenLogout() {

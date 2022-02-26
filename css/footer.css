@@ -1,0 +1,22 @@
+.footer {
+  margin-top: 200px;
+  border-top: 1px solid var(--gray-light);
+  text-align: end;
+  background-color: var(--gray-100);
+  padding: 14px;
+  color: #2962ff;
+}
+
+.button-enter {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: white;
+  cursor: pointer;
+  color: #2962ff;
+}
+
+.link {
+  text-decoration: none;
+  color: #2962ff;
+}

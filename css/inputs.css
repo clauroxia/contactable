@@ -2,7 +2,7 @@
 @import url(typography.css);
 
 input {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 12px;
   line-height: 20px;
 }
@@ -33,9 +33,9 @@ input.error {
   border-bottom: 1px solid var(--gray-light);
 }
 
-.input__form:focus{
+.input__form:focus {
   outline: none;
-  border-bottom: 1px solid var(--black);;
+  border-bottom: 1px solid var(--black);
 }
 
 .container {
