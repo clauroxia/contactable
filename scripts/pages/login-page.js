@@ -5,13 +5,14 @@ import STORE from "../store.js";
 import HomePage from "./home-page.js";
 import SignupPage from "./signup-page.js";
 import { getContacts } from "../services/contacts-service.js";
+import { renderHeader } from "../components/header.js";
 
 function render() {
   const { loginError } = LoginPage.state;
   return `
+  ${renderHeader("Login", "none")}
 <main>
   <section class="container">
-    <h1 class="heading title--sm form__title">Login</h1>
     <form class="js-login-form">
       <div class="container__form">
       ${input({

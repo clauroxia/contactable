@@ -6,21 +6,23 @@ import LoginPage from "./login-page.js";
 import { logout } from "../services/sessions-service.js";
 import { deleteContact } from "../services/contacts-service.js";
 import { getContacts } from "../services/contacts-service.js";
+import { renderHeader } from "../components/header.js";
 
 
 function render() {
   const contact = STORE.currentContact;
   return `
   <section>
-    <div class="header">
-      <h1 class="heading title--sm header__title">Contact Detail</h1>
-      <a href="#" class = "link js-logout"> Logout </a>
+    ${renderHeader("Contact Detail")}
+    <div class="show_contact">
+      <img src="./images/Rectangle.svg" class="image-size" >
+      <p class="content content--md black">${contact.name}</p>
+      <p class="content content--sm gray">${contact.relation}</p>
     </div>
-    <img src="./images/Rectangle.svg" class="image-size" >
-    <p>${contact.name}</p>
-    <p>${contact.relation}</p>
-    <p>${contact.number}</p>
-    <p>${contact.email}</p>
+    <div class="show_contact">
+      <p class="content content--sm gray">Number: <span class="black">${contact.number}</span> </p>
+      <p class="content content--sm gray">Email: <span class="black">${contact.email}</span> </p>
+    </div>
     <div class="footer">
       <a href="#" class="link js-back">Back</a>
       <a href="#" class="link js-delete">Delete</a>

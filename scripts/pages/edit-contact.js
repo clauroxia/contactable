@@ -2,7 +2,7 @@ import ContactDetail from "./contact-detail.js";
 import DOMHandler from "../dom-handler.js";
 import STORE from "../store.js";
 import { input } from "../components/inputs.js";
-import { updateContact } from "../services/contacts-service.js";
+import { getContacts, updateContact } from "../services/contacts-service.js";
 
 function render() {
   const contact = STORE.currentContact;
@@ -10,8 +10,8 @@ function render() {
     let relation = ["Family", "Friends", "Work", "Acquaintance"];
     let relationDefault = contact.relation;
     let option = `<option value="${contact.relation}">${contact.relation}</option>`;
-    relation = relation.filter(value => value != relationDefault);
-    for (let i=0; i<relation.length; i++) {
+    relation = relation.filter((value) => value != relationDefault);
+    for (let i = 0; i < relation.length; i++) {
       option += `<option value="${relation[i]}">${relation[i]}</option>`;
     }
     return option;
@@ -78,16 +78,16 @@ function listenSave() {
         name: name.value,
         number: number.value,
         email: email.value,
-        relation: relation.value
+        relation: relation.value,
       };
 
       STORE.currentContact = await updateContact(STORE.currentContact.id, data);
+      STORE.contacts = await getContacts();
       DOMHandler.load(ContactDetail);
     } catch (error) {
       DOMHandler.reload();
     }
   });
-
 }
 
 const EditContact = {
@@ -95,10 +95,8 @@ const EditContact = {
     return render();
   },
   addListeners() {
-    listenCancel(),
-    listenSave()
-
-  }
+    listenCancel(), listenSave();
+  },
 };
 
 export default EditContact;
