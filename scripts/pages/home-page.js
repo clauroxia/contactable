@@ -58,8 +58,8 @@ function listenContact() {
 }
 
 function listenLogout() {
-  const logout = document.querySelector(".js-logout");
-  logout.addEventListener("click", async (event) => {
+  const link = document.querySelector(".js-logout");
+  link.addEventListener("click", async (event) => {
     event.preventDefault();
     try {
       await logout();
