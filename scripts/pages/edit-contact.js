@@ -24,38 +24,37 @@ function render() {
     </div>
     <form class="js-edit-form">
       <div class="container__form">
-      ${input({
-        id: "name",
-        value: contact.name,
-        type: "name",
-        required: true,
-      })}
-      ${input({
-        id: "number",
-        value: contact.number,
-        type: "number",
-        required: true,
-      })}
-      ${input({
-        id: "email",
-        value: contact.email,
-        type: "email",
-        required: true,
-      })}
-      <div class="input__container">
-        <div class="input__form">
-          <select class="input__element input__select" name='relation' id="standard-select">
-          ${relationContacts()}
-          </select>
+        ${input({
+          id: "name",
+          value: contact.name,
+          type: "name",
+          required: true,
+        })}
+        ${input({
+          id: "number",
+          value: contact.number,
+          type: "number",
+          required: true,
+        })}
+        ${input({
+          id: "email",
+          value: contact.email,
+          type: "email",
+          required: true,
+        })}
+        <div class="input__container">
+          <div class="input__row">
+            <select class="input__form input__select" name='relation' id="standard-select">
+            ${relationContacts()}
+            </select>
+          </div>
         </div>
-      </div>
       </div>  
       <div class="footer">
-      <a href="#" class="link js-cancel">Cancel</a>
-      <button class="button-enter js-save">Save</button>
+        <a href="#" class="link js-cancel">Cancel</a>
+        <button class="button-enter js-save">Save</button>
       </div>
-      </form>
-    
+    </form>
   </section>
   `;
 }
