@@ -2,6 +2,8 @@ import DOMHandler from "../dom-handler.js";
 import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import LoginPage from "./login-page.js";
+import ContactDetail from "./contact-detail.js";
+import { getContact } from "../services/contacts-service.js";
 
 function renderHeader(title) {
   return `
@@ -23,8 +25,8 @@ function renderUL() {
 function render(contact) {
   // const currentTab = STORE.currentTab;
   return `
-  <li>
-    <div class="contact-container">
+  <li class="js-contact" data-id=${contact.id}>
+    <div class="contact-container js-show_contact">
       <div class="contact-details">
         <img src="images/Rectangle.svg" alt="">
         <p class="content content--sm">${contact.name}</p>
@@ -43,9 +45,21 @@ function renderContacts(contacts) {
   return contactsTemplate;
 }
 
+function listenContact() {
+  const ul = document.querySelector(".js-contact-list")
+  ul.addEventListener("click", async (event) => {
+    
+    const contact = event.target.closest(".js-contact");
+    if (!contact) return;
+
+    STORE.currentContact = await getContact(contact.dataset.id);
+    DOMHandler.load(ContactDetail)
+  });
+}
+
 function listenLogout() {
-  const a = document.querySelector(".js-logout");
-  a.addEventListener("click", async (event) => {
+  const logout = document.querySelector(".js-logout");
+  logout.addEventListener("click", async (event) => {
     event.preventDefault();
     try {
       await logout();
@@ -62,6 +76,7 @@ const HomePage = {
   },
   addListeners() {
     listenLogout();
+    listenContact();
   },
 };
 
