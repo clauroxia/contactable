@@ -11,7 +11,7 @@ export function input({
     <div class="input">
       ${
         label
-          ? `<label for="${id}" class="content-xs overline">${label}</label>`
+          ? `<label for="${id}" class="black">${label}</label>`
           : ""
       }
       <div class="input__container">

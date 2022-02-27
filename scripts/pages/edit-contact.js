@@ -3,14 +3,16 @@ import DOMHandler from "../dom-handler.js";
 import STORE from "../store.js";
 import { input } from "../components/inputs.js";
 import { getContacts, updateContact } from "../services/contacts-service.js";
+import { renderHeader } from "../components/header.js";
+import LoginPage from "./login-page.js";
+import { logout } from "../services/sessions-service.js";
 
 function render() {
   const contact = STORE.currentContact;
   function relationContacts() {
     let relation = ["Family", "Friends", "Work", "Acquaintance"];
-    let relationDefault = contact.relation;
     let option = `<option value="${contact.relation}">${contact.relation}</option>`;
-    relation = relation.filter((value) => value != relationDefault);
+    relation = relation.filter((value) => value != contact.relation);
     for (let i = 0; i < relation.length; i++) {
       option += `<option value="${relation[i]}">${relation[i]}</option>`;
     }
@@ -18,10 +20,7 @@ function render() {
   }
   return `
   <section>
-    <div class="header">
-      <h1 class="heading title--sm header__title">Edit contact</h1>
-      <a href="#" class = "link js-logout"> Logout </a>
-    </div>
+    ${renderHeader("Edit Contact")}
     <form class="js-edit-form">
       <div class="container__form">
         ${input({
@@ -44,7 +43,7 @@ function render() {
         })}
         <div class="input__container">
           <div class="input__row">
-            <select class="input__form input__select" name='relation' id="standard-select">
+            <select class="input input__form" name='relation' id="standard-select">
             ${relationContacts()}
             </select>
           </div>
@@ -57,6 +56,19 @@ function render() {
     </form>
   </section>
   `;
+}
+
+function listenLogout() {
+  const link = document.querySelector(".js-logout");
+  link.addEventListener("click", async (event) => {
+    event.preventDefault();
+    try {
+      await logout();
+      DOMHandler.load(LoginPage);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 }
 
 function listenCancel() {
@@ -94,7 +106,9 @@ const EditContact = {
     return render();
   },
   addListeners() {
-    listenCancel(), listenSave();
+    listenLogout(),
+    listenCancel(), 
+    listenSave();
   },
 };
 

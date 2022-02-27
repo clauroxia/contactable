@@ -79,7 +79,7 @@ const ContactDetail = {
     listenLogout(),
     listenBack(),
     listenEdit(),
-    listenDelete()
+    listenDelete();
   }
 };
 

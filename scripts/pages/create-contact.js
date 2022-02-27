@@ -4,6 +4,9 @@ import { createContact, getContacts } from "../services/contacts-service.js";
 import STORE from "../store.js";
 import HomePage from "./home-page.js";
 import { renderHeader } from "../components/header.js";
+import LoginPage from "./login-page.js";
+import { logout } from "../services/sessions-service.js";
+
 
 function render() {
   const { createError } = CreateContactPage.state;
@@ -36,7 +39,7 @@ function render() {
       })}
       <div class="input__container">
         <div class="input__row">
-          <select class="input__form input__select" name='relation' id="standard-select">
+          <select class="input input__form" name='relation' id="standard-select">
             <option value="Option 1">Relation</option>
             <option value="Family">Family</option>
             <option value="Friends">Friends</option>
@@ -57,6 +60,19 @@ function render() {
   </section>
 </main>
   `;
+}
+
+function listenLogout() {
+  const link = document.querySelector(".js-logout");
+  link.addEventListener("click", async (event) => {
+    event.preventDefault();
+    try {
+      await logout();
+      DOMHandler.load(LoginPage);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 }
 
 function listenSubmitForm() {
@@ -102,7 +118,8 @@ const CreateContactPage = {
     return render();
   },
   addListeners() {
-    listenSubmitForm();
+    listenLogout(),
+    listenSubmitForm(),
     listenCancel();
   },
   state: {
